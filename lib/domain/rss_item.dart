@@ -12,6 +12,7 @@ import 'rss_item_itunes.dart';
 
 class RssItem {
   final String? title;
+  final String? figure;
   final String? description;
   final String? link;
 
@@ -30,6 +31,7 @@ class RssItem {
 
   const RssItem({
     this.title,
+    this.figure,
     this.description,
     this.link,
     this.categories = const <RssCategory>[],
@@ -48,6 +50,7 @@ class RssItem {
 
   factory RssItem.parse(XmlElement element) {
     return RssItem(
+      figure: findElementOrNull(element, 'figure')?.text,
       title: findElementOrNull(element, 'title')?.text,
       description: findElementOrNull(element, 'description')?.text,
       link: findElementOrNull(element, 'link')?.text,
